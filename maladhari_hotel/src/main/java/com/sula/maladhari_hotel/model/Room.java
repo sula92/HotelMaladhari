@@ -1,15 +1,16 @@
 package com.sula.maladhari_hotel.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString
 @NoArgsConstructor
+@Builder
 public class Room {
 
     @Id
@@ -18,5 +19,8 @@ public class Room {
     private long chargesPerDay;
     private int floor;
     private String condition;
+    @ManyToOne
+    @JoinColumn(name = "reservation_id", referencedColumnName = "id", nullable = true)
+    private RoomReservation roomReservation;
     private String availability;
 }

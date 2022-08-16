@@ -1,23 +1,23 @@
 package com.sula.maladhari_hotel.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-@Data
+@Table(name = "credit_card_details")
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class CreditCardDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String cardNumber;
     private int secretNumber;
+    @OneToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 }
