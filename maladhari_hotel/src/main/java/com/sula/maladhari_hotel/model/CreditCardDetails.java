@@ -15,6 +15,8 @@ import javax.persistence.*;
 public class CreditCardDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String cardNumber;
     private int secretNumber;
     @OneToOne

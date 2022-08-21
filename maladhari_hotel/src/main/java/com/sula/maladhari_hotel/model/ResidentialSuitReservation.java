@@ -3,36 +3,34 @@ package com.sula.maladhari_hotel.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "room_reservation")
+@Table(name = "residential_suit_reservation")
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
 @Builder
-public class RoomReservation {
+public class ResidentialSuitReservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @NotNull
-    private Customer customer;
-
     @ManyToMany
     @JoinTable(
-            name = "room_reservation_detail",
+            name = "residentialSuite_reservation_detail",
             joinColumns = {@JoinColumn(name = "reservation_id")},
-            inverseJoinColumns = {@JoinColumn(name = "room_id")}
+            inverseJoinColumns = {@JoinColumn(name = "residentialSuite_id")}
     )
-    private List<Room> rooms;
+    private List<ResidentialSuite> residentialSuites;
+
+    @OneToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private Customer customer;
 
     @OneToOne
     @JoinColumn(name = "travel_company_id", referencedColumnName = "id")
@@ -52,6 +50,12 @@ public class RoomReservation {
     @Temporal(TemporalType.DATE)
     @Column(name = "date_of_departure")
     private Date dateOfADeparture;
+
+    @Column(name = "monthly_or_weekly")
+    private long monthlyOrWeekly;
+
+    @Column(name = "charges")
+    private long Charges;
 
     @Column(name = "restaurant_charges")
     private long restaurantCharges;

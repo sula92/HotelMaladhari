@@ -1,11 +1,12 @@
 package com.sula.maladhari_hotel.model;
 
+import com.sula.maladhari_hotel.model.enums.ResidentialSuitTypes;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "residential_suit")
+@Table(name = "residential_suite")
 @Data
 @Getter
 @Setter
@@ -16,19 +17,10 @@ public class ResidentialSuite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
 
-    private String type;
-
-    @Column(name = "weekly_charges")
-    private long weeklyCharges;
-
-    @Column(name = "monthly_charges")
-    private long monthlyCharges;
-
-    @ManyToOne
-    @JoinColumn(name = "reservation_id", referencedColumnName = "id", nullable = true)
-    private ResidentialSuitReservation residentialSuitReservation;
+    @Enumerated(EnumType.STRING)
+    private ResidentialSuitTypes residentialSuitTypes;
 
     private String availability;
 }

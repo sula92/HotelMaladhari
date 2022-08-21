@@ -14,13 +14,10 @@ import javax.persistence.*;
 public class Room {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @Column(name = "charges_per_day")
     private long chargesPerDay;
     private int floor;
-    private String condition;
-    @ManyToOne
-    @JoinColumn(name = "reservation_id", referencedColumnName = "id", nullable = true)
-    private RoomReservation roomReservation;
     private String availability;
 }
