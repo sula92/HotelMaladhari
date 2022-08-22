@@ -1,5 +1,6 @@
 package com.sula.maladhari_hotel.model;
 
+import com.sula.maladhari_hotel.model.enums.ReservationStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -34,8 +35,11 @@ public class RoomReservation {
     )
     private List<Room> rooms;
 
+    @Column(name = "reservation_status")
+    private ReservationStatus reservationStatus;
+
     @OneToOne
-    @JoinColumn(name = "travel_company_id", referencedColumnName = "id")
+    @JoinColumn(name = "travel_company_id", referencedColumnName = "id", nullable = true)
     TravelCompany travelCompany;
 
     @Basic
@@ -54,17 +58,17 @@ public class RoomReservation {
     private Date dateOfADeparture;
 
     @Column(name = "restaurant_charges")
-    private long restaurantCharges;
+    private double restaurantCharges;
 
     @Column(name = "room_service")
-    private long roomService ;
+    private double roomService ;
 
-    @Column(name = "laundry")
-    private long laundry;
+    @Column(name = "laundry_expences")
+    private double laundryExpences;
 
-    private long telephone;
+    private double telephoneExpences;
 
-    private long club;
+    private double clubExpences;
 
     private boolean isCardDetailProvided;
 

@@ -64,10 +64,15 @@ public class RoomReservationController {
                         .orElseThrow(() -> new ResourceNotFoundException(HttpStatus.NOT_FOUND,"RoomReservation not found on :: " + roomReservationId));
 
         roomReservation1.setCardDetailProvided(roomReservationDetails.isCardDetailProvided());
-        roomReservation1.setCardDetailProvided(roomReservationDetails.isCardDetailProvided());
-        roomReservation1.setCardDetailProvided(roomReservationDetails.isCardDetailProvided());
-        roomReservation1.setCardDetailProvided(roomReservationDetails.isCardDetailProvided());
-        roomReservation1.setCardDetailProvided(roomReservationDetails.isCardDetailProvided());
+        roomReservation1.setDateOfADeparture(roomReservationDetails.getDateOfADeparture());
+        roomReservation1.setDateOfArrival(roomReservationDetails.getDateOfArrival());
+        roomReservation1.setDateOfReserved(roomReservationDetails.getDateOfReserved());
+        roomReservation1.setClub(roomReservationDetails.getClub());
+        roomReservation1.setDiscount(roomReservationDetails.getDiscount());
+        roomReservation1.setPaymentsCompleted(roomReservationDetails.isPaymentsCompleted());
+        roomReservation1.setLaundry(roomReservationDetails.getLaundry());
+        roomReservation1.setRooms(roomReservationDetails.getRooms());
+        roomReservation1.setRestaurantCharges(roomReservationDetails.getRestaurantCharges());
 
         final RoomReservation updatedRoomReservation=roomReservationRepository.save(roomReservation1);
         return ResponseEntity.ok(updatedRoomReservation);
@@ -79,7 +84,7 @@ public class RoomReservationController {
             roomReservationRepository.deleteById(id);
         }
         else {
-            throw new ResourceNotFoundException("No Such Branch");
+            throw new ResourceNotFoundException("No Such Record");
         }
     }
 }
